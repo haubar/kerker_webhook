@@ -40,10 +40,26 @@ module.exports = app => {
       auto_inactive: true // Adds a new inactive status to all prior non-transient, non-production environment deployments with the same repository and environment name as the created status's deployment. An inactive status is only added to deployments that had a success state.
     }))
   })
+  app.on('push', async context => {
+    //to do push code
+    app.log(context)
+  })
+
+  app.on('deployment', async context => {
+    // to do deploy env 
+    app.log(context)
+  })
+
+  app.on(`*`, async context => {
+    context.log({ event: context.event, action: context.payload.action })
+  })
+  
+
+}
+
 
   // For more information on building apps:
   // https://probot.github.io/docs/
 
   // To get your app running against GitHub, see:
   // https://probot.github.io/docs/development/
-}
